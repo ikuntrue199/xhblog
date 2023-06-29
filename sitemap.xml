@@ -2,25 +2,25 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>http://example.org/posts/</loc>
+    <loc>https://xhblog.vercel.app/posts/</loc>
     <lastmod>2023-06-28T17:03:21+08:00</lastmod>
   </url><url>
-    <loc>http://example.org/tags/</loc>
+    <loc>https://xhblog.vercel.app/tags/</loc>
     <lastmod>2023-06-28T17:03:21+08:00</lastmod>
   </url><url>
-    <loc>http://example.org/</loc>
+    <loc>https://xhblog.vercel.app/</loc>
     <lastmod>2023-06-28T17:03:21+08:00</lastmod>
   </url><url>
-    <loc>http://example.org/tags/%E6%97%A5%E5%B8%B8/</loc>
+    <loc>https://xhblog.vercel.app/tags/%E6%97%A5%E5%B8%B8/</loc>
     <lastmod>2023-06-28T17:03:21+08:00</lastmod>
   </url><url>
-    <loc>http://example.org/posts/20230628/</loc>
+    <loc>https://xhblog.vercel.app/posts/20230628/</loc>
     <lastmod>2023-06-28T17:03:21+08:00</lastmod>
   </url><url>
-    <loc>http://example.org/index-about/</loc>
+    <loc>https://xhblog.vercel.app/index-about/</loc>
   </url><url>
-    <loc>http://example.org/categories/</loc>
+    <loc>https://xhblog.vercel.app/categories/</loc>
   </url><url>
-    <loc>http://example.org/projects/</loc>
+    <loc>https://xhblog.vercel.app/projects/</loc>
   </url>
 </urlset>
