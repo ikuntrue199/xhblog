@@ -6,7 +6,18 @@
     <description>Recent content on xhikun</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Wed, 28 Jun 2023 17:03:21 +0800</lastBuildDate><atom:link href="https://xhblog.vercel.app/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Fri, 30 Jun 2023 16:22:11 +0800</lastBuildDate><atom:link href="https://xhblog.vercel.app/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>利用python opencv，将处理过后的图片，保存为html5支持的mp4</title>
+      <link>https://xhblog.vercel.app/posts/20230630-1/</link>
+      <pubDate>Fri, 30 Jun 2023 16:22:11 +0800</pubDate>
+      
+      <guid>https://xhblog.vercel.app/posts/20230630-1/</guid>
+      <description>我使用的是ubuntu系统，遇到python opencv生成的视频，无法在浏览器上播放，之前用C++ 写的时候，直接将fourcc设置为h264编码的一种即可（apt 直接装的opencv）
+CV_FOURCC(&amp;#39;a&amp;#39;, &amp;#39;v&amp;#39;, &amp;#39;c&amp;#39;, &amp;#39;1&amp;#39;) 以为python opencv也可简单的设置，但是不行，google一下，发现python opencv 通过pip下载的不包含h264编码器，需要从源码编译才行，个人觉得太麻烦，直接舍弃，于是采用ffmepg转码，简单粗暴。
+#主要转码代码为 def convertToMP4(inputPath): outputPath = inputPath[:-3] + &amp;#39;mp4&amp;#39; cmd = &amp;#39;ffmpeg -y -i {} -vcodec h264 {}&amp;#39;.format(input_file_path, output_file_path) subprocess.call(cmd, shell=True) return outputPath 转换完成的视频，可流畅的在浏览器上播放</description>
+    </item>
+    
     <item>
       <title>第一篇博客</title>
       <link>https://xhblog.vercel.app/posts/20230628/</link>

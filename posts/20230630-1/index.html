@@ -17,26 +17,26 @@
     
 
     
-    <title>Categories</title>
+    <title>利用python opencv，将处理过后的图片，保存为html5支持的mp4</title>
     <meta name="description" content="只因你太美">
-    <meta name="keywords" content='blog, xhikun, hugo'>
+    <meta name="keywords" content='blog, xhikun, hugo, 问题记录'>
 
-    <meta property="og:url" content="https://xhblog.vercel.app/categories/">
+    <meta property="og:url" content="https://xhblog.vercel.app/posts/20230630-1/">
     <meta property="og:type" content="website">
-    <meta property="og:title" content="Categories">
+    <meta property="og:title" content="利用python opencv，将处理过后的图片，保存为html5支持的mp4">
     <meta property="og:description" content="只因你太美">
     <meta property="og:image" content="https://xhblog.vercel.app/images/avatar.jpg">
     <meta property="og:image:secure_url" content="https://xhblog.vercel.app/images/avatar.jpg">
 
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Categories">
+    <meta name="twitter:title" content="利用python opencv，将处理过后的图片，保存为html5支持的mp4">
     <meta name="twitter:description" content="只因你太美">
-    <meta property="twitter:domain" content="https://xhblog.vercel.app/categories/">
-    <meta property="twitter:url" content="https://xhblog.vercel.app/categories/">
+    <meta property="twitter:domain" content="https://xhblog.vercel.app/posts/20230630-1/">
+    <meta property="twitter:url" content="https://xhblog.vercel.app/posts/20230630-1/">
     <meta name="twitter:image" content="https://xhblog.vercel.app/images/avatar.jpg">
 
     
-    <link rel="canonical" href="https://xhblog.vercel.app/categories/" />
+    <link rel="canonical" href="https://xhblog.vercel.app/posts/20230630-1/" />
 
     
     <link rel="stylesheet" type="text/css" href="/css/normalize.min.css" media="print">
@@ -157,30 +157,46 @@
     </nav>
 </header>
 <main id="content">
-<div class="container tags-list">
+    <div class="post container">
+    <div class="post-header-section">
+        <h1>利用python opencv，将处理过后的图片，保存为html5支持的mp4</h1>
+        <small role="doc-subtitle"></small>
+        <p class="post-date">
+            June 30, 2023
+        </p>
 
-    <h1 class="list-title">Tags</h1>
-    
-    <ul class="post-tags">
+        <ul class="post-tags">
         
-        <li class="post-tag">
-            <a href="/tags/%E9%97%AE%E9%A2%98/">
-                <div class="tag-name">问题</div>
-                <div class="tag-posts-count">1</div>
-            </a>
-        </li>
+            <li class="post-tag"><a href="https://xhblog.vercel.app/tags/%E9%97%AE%E9%A2%98%E8%AE%B0%E5%BD%95">问题记录</a></li>
         
-        <li class="post-tag">
-            <a href="/tags/%E9%97%AE%E9%A2%98%E8%AE%B0%E5%BD%95/">
-                <div class="tag-name">问题记录</div>
-                <div class="tag-posts-count">1</div>
-            </a>
-        </li>
-        
-    </ul>
-    
+        </ul>
+    </div>
 
+    <div class="post-content">
+        <p>
+            <p>我使用的是ubuntu系统，遇到python opencv生成的视频，无法在浏览器上播放，之前用C++ 写的时候，直接将fourcc设置为h264编码的一种即可（apt 直接装的opencv）</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span><span style="color:#a6e22e">CV_FOURCC</span>(<span style="color:#e6db74">&#39;a&#39;</span>, <span style="color:#e6db74">&#39;v&#39;</span>, <span style="color:#e6db74">&#39;c&#39;</span>, <span style="color:#e6db74">&#39;1&#39;</span>)
+</span></span></code></pre></div><p>以为python opencv也可简单的设置，但是不行，google一下，发现python opencv 通过pip下载的不包含h264编码器，需要从源码编译才行，个人觉得太麻烦，直接舍弃，于是采用ffmepg转码，简单粗暴。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#75715e">#主要转码代码为</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">convertToMP4</span>(inputPath):
+</span></span><span style="display:flex;"><span>    outputPath <span style="color:#f92672">=</span> inputPath[:<span style="color:#f92672">-</span><span style="color:#ae81ff">3</span>] <span style="color:#f92672">+</span> <span style="color:#e6db74">&#39;mp4&#39;</span>
+</span></span><span style="display:flex;"><span>    cmd <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;ffmpeg -y -i </span><span style="color:#e6db74">{}</span><span style="color:#e6db74"> -vcodec h264 </span><span style="color:#e6db74">{}</span><span style="color:#e6db74">&#39;</span><span style="color:#f92672">.</span>format(input_file_path, output_file_path)
+</span></span><span style="display:flex;"><span>    subprocess<span style="color:#f92672">.</span>call(cmd, shell<span style="color:#f92672">=</span><span style="color:#66d9ef">True</span>)
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> outputPath 
+</span></span></code></pre></div><p>转换完成的视频，可流畅的在浏览器上播放</p>
+
+        </p>
+        
+    </div>
+
+    <div class="prev-next">
+        
+    </div>
 </div>
+
+
+
+    
 
         </main><footer class="footer">
     

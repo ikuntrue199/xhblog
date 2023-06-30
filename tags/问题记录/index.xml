@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Posts on xhikun</title>
-    <link>https://xhblog.vercel.app/posts/</link>
-    <description>Recent content in Posts on xhikun</description>
+    <title>问题记录 on xhikun</title>
+    <link>https://xhblog.vercel.app/tags/%E9%97%AE%E9%A2%98%E8%AE%B0%E5%BD%95/</link>
+    <description>Recent content in 问题记录 on xhikun</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Fri, 30 Jun 2023 16:22:11 +0800</lastBuildDate><atom:link href="https://xhblog.vercel.app/posts/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Fri, 30 Jun 2023 16:22:11 +0800</lastBuildDate><atom:link href="https://xhblog.vercel.app/tags/%E9%97%AE%E9%A2%98%E8%AE%B0%E5%BD%95/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>利用python opencv，将处理过后的图片，保存为html5支持的mp4</title>
       <link>https://xhblog.vercel.app/posts/20230630-1/</link>
@@ -16,18 +16,6 @@
       <description>我使用的是ubuntu系统，遇到python opencv生成的视频，无法在浏览器上播放，之前用C++ 写的时候，直接将fourcc设置为h264编码的一种即可（apt 直接装的opencv）
 CV_FOURCC(&amp;#39;a&amp;#39;, &amp;#39;v&amp;#39;, &amp;#39;c&amp;#39;, &amp;#39;1&amp;#39;) 以为python opencv也可简单的设置，但是不行，google一下，发现python opencv 通过pip下载的不包含h264编码器，需要从源码编译才行，个人觉得太麻烦，直接舍弃，于是采用ffmepg转码，简单粗暴。
 #主要转码代码为 def convertToMP4(inputPath): outputPath = inputPath[:-3] + &amp;#39;mp4&amp;#39; cmd = &amp;#39;ffmpeg -y -i {} -vcodec h264 {}&amp;#39;.format(input_file_path, output_file_path) subprocess.call(cmd, shell=True) return outputPath 转换完成的视频，可流畅的在浏览器上播放</description>
-    </item>
-    
-    <item>
-      <title>第一篇博客</title>
-      <link>https://xhblog.vercel.app/posts/20230628/</link>
-      <pubDate>Wed, 28 Jun 2023 17:03:21 +0800</pubDate>
-      
-      <guid>https://xhblog.vercel.app/posts/20230628/</guid>
-      <description>我的第一篇博客 今天，我终于开通了自己的博客网站！我感到非常激动和兴奋，这是一个全新的开始。
-写博客对我来说意义重大。它是我分享知识、记录经验和思考的平台。我希望通过博客与读者们分享我的见解、学习心得和成长故事。
-我的博客主题是基于 Hugo 构建的，它提供了强大的功能和灵活的扩展性。我选择了一个简洁而美观的主题，以确保内容能够更好地呈现。
-我玩博客主要目的，主要记录一些冲浪时遇到好玩的东西，免得自己忘记。</description>
     </item>
     
   </channel>
