@@ -2,17 +2,17 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Posts on xhikun</title>
-    <link>https://xhblog.vercel.app/posts/</link>
+    <link>https://blog.wjxuikun.eu.org/posts/</link>
     <description>Recent content in Posts on xhikun</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Fri, 30 Jun 2023 16:22:11 +0800</lastBuildDate><atom:link href="https://xhblog.vercel.app/posts/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Fri, 30 Jun 2023 16:22:11 +0800</lastBuildDate><atom:link href="https://blog.wjxuikun.eu.org/posts/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>利用python opencv，将处理过后的图片，保存为html5支持的mp4</title>
-      <link>https://xhblog.vercel.app/posts/20230630-1/</link>
+      <link>https://blog.wjxuikun.eu.org/posts/20230630-1/</link>
       <pubDate>Fri, 30 Jun 2023 16:22:11 +0800</pubDate>
       
-      <guid>https://xhblog.vercel.app/posts/20230630-1/</guid>
+      <guid>https://blog.wjxuikun.eu.org/posts/20230630-1/</guid>
       <description>我使用的是ubuntu系统，遇到python opencv生成的视频，无法在浏览器上播放，之前用C++ 写的时候，直接将fourcc设置为h264编码的一种即可（apt 直接装的opencv）
 CV_FOURCC(&amp;#39;a&amp;#39;, &amp;#39;v&amp;#39;, &amp;#39;c&amp;#39;, &amp;#39;1&amp;#39;) 以为python opencv也可简单的设置，但是不行，google一下，发现python opencv 通过pip下载的不包含h264编码器，需要从源码编译才行，个人觉得太麻烦，直接舍弃，于是采用ffmepg转码，简单粗暴。
 #主要转码代码为 def convertToMP4(inputPath): outputPath = inputPath[:-3] + &amp;#39;mp4&amp;#39; cmd = &amp;#39;ffmpeg -y -i {} -vcodec h264 {}&amp;#39;.format(input_file_path, output_file_path) subprocess.call(cmd, shell=True) return outputPath 转换完成的视频，可流畅的在浏览器上播放</description>
@@ -20,14 +20,25 @@ CV_FOURCC(&amp;#39;a&amp;#39;, &amp;#39;v&amp;#39;, &amp;#39;c&amp;#39;, &amp;#3
     
     <item>
       <title>第一篇博客</title>
-      <link>https://xhblog.vercel.app/posts/20230628/</link>
+      <link>https://blog.wjxuikun.eu.org/posts/20230628/</link>
       <pubDate>Wed, 28 Jun 2023 17:03:21 +0800</pubDate>
       
-      <guid>https://xhblog.vercel.app/posts/20230628/</guid>
+      <guid>https://blog.wjxuikun.eu.org/posts/20230628/</guid>
       <description>我的第一篇博客 今天，我终于开通了自己的博客网站！我感到非常激动和兴奋，这是一个全新的开始。
 写博客对我来说意义重大。它是我分享知识、记录经验和思考的平台。我希望通过博客与读者们分享我的见解、学习心得和成长故事。
 我的博客主题是基于 Hugo 构建的，它提供了强大的功能和灵活的扩展性。我选择了一个简洁而美观的主题，以确保内容能够更好地呈现。
 我玩博客主要目的，主要记录一些冲浪时遇到好玩的东西，免得自己忘记。</description>
+    </item>
+    
+    <item>
+      <title>ubuntu 18.04 mmdetection 训练mask_rcnn</title>
+      <link>https://blog.wjxuikun.eu.org/posts/20230718-1/</link>
+      <pubDate>Tue, 30 Jun 2020 16:22:11 +0800</pubDate>
+      
+      <guid>https://blog.wjxuikun.eu.org/posts/20230718-1/</guid>
+      <description>Git 官网 安装教程以及数据集准备，可以根据自己想要跑的网络准备。下面记录一下这次跑mask_rcnn的过程。
+数据集准备 这次在数据上面花了很多时间，一开始自己使用精灵标注助手标注，但是感觉后续处理很麻烦。后来借鉴了一下别人做数据集的方式，采用labelme进行标注，再通过mask出的区域，反算出物体的位置标签。
+我在训练mask_rcnn的时候，采用的是coco数据集的格式，首先，先按照coco数据集的格式，创建文件夹。建议将data放在mmdetection。 之后，需要调用一个labelme2coco.py脚本，生成instance.json文件（coco数据集格式），另外这个脚本需要把labelme生成的json和图片放在一起，当然也可以不放在一起，可以自己根据情况修改。 # -*- coding:utf-8 -*- import argparse import json import matplotlib.pyplot as plt import skimage.io as io import cv2 from labelme import utils import numpy as np import glob import PIL.Image from shapely.geometry import Polygon class labelme2coco(object): def __init__(self, labelme_json=[], save_json_path=&amp;#39;./new.json&amp;#39;): &amp;#39;&amp;#39;&amp;#39; :param labelme_json: 所有labelme的json文件路径组成的列表 :param save_json_path: json保存位置 &amp;#39;&amp;#39;&amp;#39; self.labelme_json = labelme_json self.save_json_path = save_json_path self.images = [] self.categories = [] self.annotations = [] # self.</description>
     </item>
     
   </channel>

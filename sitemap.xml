@@ -2,31 +2,37 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>https://xhblog.vercel.app/posts/</loc>
+    <loc>https://blog.wjxuikun.eu.org/posts/</loc>
     <lastmod>2023-06-30T16:22:11+08:00</lastmod>
   </url><url>
-    <loc>https://xhblog.vercel.app/tags/</loc>
+    <loc>https://blog.wjxuikun.eu.org/tags/</loc>
     <lastmod>2023-06-30T16:22:11+08:00</lastmod>
   </url><url>
-    <loc>https://xhblog.vercel.app/</loc>
+    <loc>https://blog.wjxuikun.eu.org/</loc>
     <lastmod>2023-06-30T16:22:11+08:00</lastmod>
   </url><url>
-    <loc>https://xhblog.vercel.app/posts/20230630-1/</loc>
+    <loc>https://blog.wjxuikun.eu.org/posts/20230630-1/</loc>
     <lastmod>2023-06-30T16:22:11+08:00</lastmod>
   </url><url>
-    <loc>https://xhblog.vercel.app/tags/%E9%97%AE%E9%A2%98%E8%AE%B0%E5%BD%95/</loc>
+    <loc>https://blog.wjxuikun.eu.org/tags/%E9%97%AE%E9%A2%98%E8%AE%B0%E5%BD%95/</loc>
     <lastmod>2023-06-30T16:22:11+08:00</lastmod>
   </url><url>
-    <loc>https://xhblog.vercel.app/posts/20230628/</loc>
+    <loc>https://blog.wjxuikun.eu.org/posts/20230628/</loc>
     <lastmod>2023-06-28T17:03:21+08:00</lastmod>
   </url><url>
-    <loc>https://xhblog.vercel.app/tags/%E9%97%AE%E9%A2%98/</loc>
+    <loc>https://blog.wjxuikun.eu.org/tags/%E9%97%AE%E9%A2%98/</loc>
     <lastmod>2023-06-28T17:03:21+08:00</lastmod>
   </url><url>
-    <loc>https://xhblog.vercel.app/index-about/</loc>
+    <loc>https://blog.wjxuikun.eu.org/posts/20230718-1/</loc>
+    <lastmod>2020-06-30T16:22:11+08:00</lastmod>
   </url><url>
-    <loc>https://xhblog.vercel.app/categories/</loc>
+    <loc>https://blog.wjxuikun.eu.org/tags/%E6%8A%80%E6%9C%AF/</loc>
+    <lastmod>2020-06-30T16:22:11+08:00</lastmod>
   </url><url>
-    <loc>https://xhblog.vercel.app/projects/</loc>
+    <loc>https://blog.wjxuikun.eu.org/index-about/</loc>
+  </url><url>
+    <loc>https://blog.wjxuikun.eu.org/categories/</loc>
+  </url><url>
+    <loc>https://blog.wjxuikun.eu.org/projects/</loc>
   </url>
 </urlset>
