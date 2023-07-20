@@ -1,0 +1,465 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <style>
+        :root {
+            --accent-color: #FF4D4D;
+        }
+    </style>
+
+    
+    
+    
+    
+    
+    
+
+    
+    <title>ubuntu 18.04 mmdetection 训练mask_rcnn</title>
+    <meta name="description" content="只因你太美">
+    <meta name="keywords" content='blog, xhikun, hugo, 深度学习'>
+
+    <meta property="og:url" content="https://blog.wjxuikun.eu.org/posts/ai/mmdet_mask/">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="ubuntu 18.04 mmdetection 训练mask_rcnn">
+    <meta property="og:description" content="只因你太美">
+    <meta property="og:image" content="https://blog.wjxuikun.eu.org/images/avatar.jpg">
+    <meta property="og:image:secure_url" content="https://blog.wjxuikun.eu.org/images/avatar.jpg">
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="ubuntu 18.04 mmdetection 训练mask_rcnn">
+    <meta name="twitter:description" content="只因你太美">
+    <meta property="twitter:domain" content="https://blog.wjxuikun.eu.org/posts/ai/mmdet_mask/">
+    <meta property="twitter:url" content="https://blog.wjxuikun.eu.org/posts/ai/mmdet_mask/">
+    <meta name="twitter:image" content="https://blog.wjxuikun.eu.org/images/avatar.jpg">
+
+    
+    <link rel="canonical" href="https://blog.wjxuikun.eu.org/posts/ai/mmdet_mask/" />
+
+    
+    <link rel="stylesheet" type="text/css" href="/css/normalize.min.css" media="print">
+
+    
+    <link rel="stylesheet" type="text/css" href="/css/main.min.css">
+
+    
+    <link id="dark-theme" rel="stylesheet" href="/css/dark.min.css">
+
+    
+    <script src="/js/bundle.min.edd985581bf860dfb4507e5885197f1680160c7fe19f23b31e183126d99dd596.js" integrity="sha256-7dmFWBv4YN&#43;0UH5YhRl/FoAWDH/hnyOzHhgxJtmd1ZY="></script>
+
+    
+    
+        <!-- KaTeX -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/katex.min.css" integrity="sha384-Xi8rHCmBmhbuyyhbI88391ZKP2dmfnOl4rT9ZfRI7mLTdk1wblIUnrIq35nqwEvC" crossorigin="anonymous">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/katex.min.js" integrity="sha384-X/XCfMm41VSsqRNQgDerQczD69XqmjOOOwYQvr/uuC+j4OPoNhVgjdGFwhvN02Ja" crossorigin="anonymous"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/contrib/auto-render.min.js" integrity="sha384-+XBljXPPiv+OzfbB3cVmLHf4hdUFHlWNZN5spNQ7rmHTXpd7WvJum6fIACpNNfIR" crossorigin="anonymous"></script>
+    <script>
+      document.addEventListener("DOMContentLoaded", function() {
+        renderMathInElement(document.body, {
+          // customised options
+          // • auto-render specific keys, e.g.:
+          delimiters: [
+            {left: '$$', right: '$$', display: true},
+            {left: '$', right: '$', display: false},
+          ],
+          // • rendering keys, e.g.:
+          throwOnError : false
+        });
+      });
+    </script>
+  
+    
+</head>
+<body>
+        <script type="text/javascript">
+            
+            setThemeByUserPref();
+        </script><header class="header">
+    <nav class="header-nav">
+
+        
+        <div class="avatar">
+            <a href="https://blog.wjxuikun.eu.org/">
+                <img src="https://blog.wjxuikun.eu.org//images/avatar.jpg" alt="avatar" />
+            </a>
+        </div>
+        
+
+        <div class="nav-title">
+            <a class="nav-brand" href="https://blog.wjxuikun.eu.org/">xhikun</a>
+        </div>
+
+        <div class="nav-links">
+            
+            <div class="nav-link">
+                <a href="https://blog.wjxuikun.eu.org/"><span data-feather='home'></span> Home </a>
+            </div>
+            
+            <div class="nav-link">
+                <a href="https://blog.wjxuikun.eu.org/posts/"><span data-feather='book'></span> Posts </a>
+            </div>
+            
+            <div class="nav-link">
+                <a href="https://blog.wjxuikun.eu.org/projects/"><span data-feather='code'></span> Projects </a>
+            </div>
+            
+            <div class="nav-link">
+                <a href="https://blog.wjxuikun.eu.org/tags/"><span data-feather='tag'></span> Tags </a>
+            </div>
+            
+
+            <span class="nav-icons-divider"></span>
+            <div class="nav-link dark-theme-toggle">
+                <span id="dark-theme-toggle-screen-reader-target" class="sr-only"></span>
+                <a>
+                    <span id="theme-toggle-icon" data-feather="moon"></span>
+                </a>
+            </div>
+
+            <div class="nav-link" id="hamburger-menu-toggle">
+                <span id="hamburger-menu-toggle-screen-reader-target" class="sr-only">menu</span>
+                <a>
+                    <span data-feather="menu"></span>
+                </a>
+            </div>
+
+            
+            <ul class="nav-hamburger-list visibility-hidden">
+                
+                <li class="nav-item">
+                    <a href="https://blog.wjxuikun.eu.org/"><span data-feather='home'></span> Home </a>
+                </li>
+                
+                <li class="nav-item">
+                    <a href="https://blog.wjxuikun.eu.org/posts/"><span data-feather='book'></span> Posts </a>
+                </li>
+                
+                <li class="nav-item">
+                    <a href="https://blog.wjxuikun.eu.org/projects/"><span data-feather='code'></span> Projects </a>
+                </li>
+                
+                <li class="nav-item">
+                    <a href="https://blog.wjxuikun.eu.org/tags/"><span data-feather='tag'></span> Tags </a>
+                </li>
+                
+                <li class="nav-item dark-theme-toggle">
+                    <span id="dark-theme-toggle-screen-reader-target" class="sr-only">theme</span>
+                    <a>
+                        <span id="theme-toggle-icon" data-feather="moon"></span>
+                    </a>
+                </li>
+            </ul>
+
+        </div>
+    </nav>
+</header>
+<main id="content">
+    <div class="post container">
+    <div class="post-header-section">
+        <h1>ubuntu 18.04 mmdetection 训练mask_rcnn</h1>
+        <small role="doc-subtitle"></small>
+        <p class="post-date">
+            June 30, 2020
+        </p>
+
+        <ul class="post-tags">
+        
+            <li class="post-tag"><a href="https://blog.wjxuikun.eu.org/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0">深度学习</a></li>
+        
+        </ul>
+    </div>
+
+    <div class="post-content">
+        <p>
+            <h1 id="git">Git</h1>
+<p><a href="https://github.com/open-mmlab/mmdetection">官网</a>
+安装教程以及数据集准备，可以根据自己想要跑的网络准备。下面记录一下这次跑mask_rcnn的过程。</p>
+<h1 id="数据集准备">数据集准备</h1>
+<p>这次在数据上面花了很多时间，一开始自己使用精灵标注助手标注，但是感觉后续处理很麻烦。后来借鉴了一下别人做数据集的方式，采用labelme进行标注，再通过mask出的区域，反算出物体的位置标签。</p>
+<p>我在训练mask_rcnn的时候，采用的是coco数据集的格式，首先，先按照coco数据集的格式，创建文件夹。建议将data放在mmdetection。
+<img src="/images/ai/mmdet_mask/1.jpg" alt="wuhusdfa"></p>
+<p>之后，需要调用一个labelme2coco.py脚本，生成instance.json文件（coco数据集格式），另外这个脚本需要把labelme生成的json和图片放在一起，当然也可以不放在一起，可以自己根据情况修改。
+<img src="/images/ai/mmdet_mask/2.jpg" alt="在这里插入图片描述"></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">#</span> <span style="color:#f92672">-*-</span> <span style="color:#a6e22e">coding</span><span style="color:#f92672">:</span><span style="color:#a6e22e">utf</span><span style="color:#f92672">-</span><span style="color:#ae81ff">8</span> <span style="color:#f92672">-*-</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">import</span> <span style="color:#a6e22e">argparse</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">import</span> <span style="color:#a6e22e">json</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">import</span> <span style="color:#a6e22e">matplotlib</span>.<span style="color:#a6e22e">pyplot</span> <span style="color:#a6e22e">as</span> <span style="color:#a6e22e">plt</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">import</span> <span style="color:#a6e22e">skimage</span>.<span style="color:#a6e22e">io</span> <span style="color:#a6e22e">as</span> <span style="color:#a6e22e">io</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">import</span> <span style="color:#a6e22e">cv2</span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">from</span> <span style="color:#a6e22e">labelme</span> <span style="color:#66d9ef">import</span> <span style="color:#a6e22e">utils</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">import</span> <span style="color:#a6e22e">numpy</span> <span style="color:#a6e22e">as</span> <span style="color:#a6e22e">np</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">import</span> <span style="color:#a6e22e">glob</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">import</span> <span style="color:#a6e22e">PIL</span>.<span style="color:#a6e22e">Image</span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">from</span> <span style="color:#a6e22e">shapely</span>.<span style="color:#a6e22e">geometry</span> <span style="color:#66d9ef">import</span> <span style="color:#a6e22e">Polygon</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">labelme2coco</span>(<span style="color:#a6e22e">object</span>)<span style="color:#f92672">:</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">def</span> <span style="color:#a6e22e">__init__</span>(<span style="color:#a6e22e">self</span>, <span style="color:#a6e22e">labelme_json</span><span style="color:#f92672">=</span>[], <span style="color:#a6e22e">save_json_path</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#39;./new.json&#39;</span>)<span style="color:#f92672">:</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#39;&#39;&#39;
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">        :param labelme_json: 所有labelme的json文件路径组成的列表
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">        :param save_json_path: json保存位置
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">        &#39;&#39;&#39;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">self</span>.<span style="color:#a6e22e">labelme_json</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">labelme_json</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">self</span>.<span style="color:#a6e22e">save_json_path</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">save_json_path</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">self</span>.<span style="color:#a6e22e">images</span> <span style="color:#f92672">=</span> []
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">self</span>.<span style="color:#a6e22e">categories</span> <span style="color:#f92672">=</span> []
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">self</span>.<span style="color:#a6e22e">annotations</span> <span style="color:#f92672">=</span> []
+</span></span><span style="display:flex;"><span>        <span style="color:#960050;background-color:#1e0010">#</span> <span style="color:#a6e22e">self</span>.<span style="color:#a6e22e">data_coco</span> <span style="color:#f92672">=</span> {}
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">self</span>.<span style="color:#a6e22e">label</span> <span style="color:#f92672">=</span> []
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">self</span>.<span style="color:#a6e22e">annID</span> <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">self</span>.<span style="color:#a6e22e">height</span> <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">self</span>.<span style="color:#a6e22e">width</span> <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">self</span>.<span style="color:#a6e22e">save_json</span>()
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">def</span> <span style="color:#a6e22e">data_transfer</span>(<span style="color:#a6e22e">self</span>)<span style="color:#f92672">:</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">for</span> <span style="color:#a6e22e">num</span>, <span style="color:#a6e22e">json_file</span> <span style="color:#66d9ef">in</span> <span style="color:#a6e22e">enumerate</span>(<span style="color:#a6e22e">self</span>.<span style="color:#a6e22e">labelme_json</span>)<span style="color:#f92672">:</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">with</span> <span style="color:#a6e22e">open</span>(<span style="color:#a6e22e">json_file</span>, <span style="color:#e6db74">&#39;r&#39;</span>) <span style="color:#a6e22e">as</span> <span style="color:#a6e22e">fp</span><span style="color:#f92672">:</span>
+</span></span><span style="display:flex;"><span>                <span style="color:#a6e22e">data</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">json</span>.<span style="color:#a6e22e">load</span>(<span style="color:#a6e22e">fp</span>)  <span style="color:#960050;background-color:#1e0010">#</span> <span style="color:#a6e22e">加载json文件</span>
+</span></span><span style="display:flex;"><span>                <span style="color:#a6e22e">self</span>.<span style="color:#a6e22e">images</span>.<span style="color:#a6e22e">append</span>(<span style="color:#a6e22e">self</span>.<span style="color:#a6e22e">image</span>(<span style="color:#a6e22e">data</span>, <span style="color:#a6e22e">num</span>))
+</span></span><span style="display:flex;"><span>                <span style="color:#66d9ef">for</span> <span style="color:#a6e22e">shapes</span> <span style="color:#66d9ef">in</span> <span style="color:#a6e22e">data</span>[<span style="color:#e6db74">&#39;shapes&#39;</span>]<span style="color:#f92672">:</span>
+</span></span><span style="display:flex;"><span>                    <span style="color:#960050;background-color:#1e0010">#</span> <span style="color:#a6e22e">label</span><span style="color:#f92672">=</span><span style="color:#a6e22e">shapes</span>[<span style="color:#e6db74">&#39;label&#39;</span>].<span style="color:#a6e22e">split</span>(<span style="color:#e6db74">&#39;_&#39;</span>)
+</span></span><span style="display:flex;"><span>                    <span style="color:#a6e22e">label</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">shapes</span>[<span style="color:#e6db74">&#39;label&#39;</span>]
+</span></span><span style="display:flex;"><span>                    <span style="color:#a6e22e">print</span>(<span style="color:#a6e22e">shapes</span>[<span style="color:#e6db74">&#39;label&#39;</span>])
+</span></span><span style="display:flex;"><span>                    <span style="color:#a6e22e">print</span>(<span style="color:#a6e22e">label</span>)
+</span></span><span style="display:flex;"><span>                    <span style="color:#66d9ef">if</span> <span style="color:#a6e22e">label</span> <span style="color:#a6e22e">not</span> <span style="color:#66d9ef">in</span> <span style="color:#a6e22e">self</span>.<span style="color:#a6e22e">label</span><span style="color:#f92672">:</span>
+</span></span><span style="display:flex;"><span>                        <span style="color:#a6e22e">self</span>.<span style="color:#a6e22e">categories</span>.<span style="color:#a6e22e">append</span>(<span style="color:#a6e22e">self</span>.<span style="color:#a6e22e">categorie</span>(<span style="color:#a6e22e">label</span>))
+</span></span><span style="display:flex;"><span>                        <span style="color:#a6e22e">self</span>.<span style="color:#a6e22e">label</span>.<span style="color:#a6e22e">append</span>(<span style="color:#a6e22e">label</span>)
+</span></span><span style="display:flex;"><span>                    <span style="color:#a6e22e">points</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">shapes</span>[<span style="color:#e6db74">&#39;points&#39;</span>]
+</span></span><span style="display:flex;"><span>                    <span style="color:#a6e22e">self</span>.<span style="color:#a6e22e">annotations</span>.<span style="color:#a6e22e">append</span>(<span style="color:#a6e22e">self</span>.<span style="color:#a6e22e">annotation</span>(<span style="color:#a6e22e">points</span>, <span style="color:#a6e22e">label</span>, <span style="color:#a6e22e">num</span>))
+</span></span><span style="display:flex;"><span>                    <span style="color:#a6e22e">self</span>.<span style="color:#a6e22e">annID</span> <span style="color:#f92672">+=</span> <span style="color:#ae81ff">1</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">print</span>(<span style="color:#a6e22e">self</span>.<span style="color:#a6e22e">label</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">def</span> <span style="color:#a6e22e">image</span>(<span style="color:#a6e22e">self</span>, <span style="color:#a6e22e">data</span>, <span style="color:#a6e22e">num</span>)<span style="color:#f92672">:</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">image</span> <span style="color:#f92672">=</span> {}
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">img</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">utils</span>.<span style="color:#a6e22e">img_b64_to_arr</span>(<span style="color:#a6e22e">data</span>[<span style="color:#e6db74">&#39;imageData&#39;</span>])  <span style="color:#960050;background-color:#1e0010">#</span> <span style="color:#a6e22e">解析原图片数据</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#960050;background-color:#1e0010">#</span> <span style="color:#a6e22e">img</span><span style="color:#f92672">=</span><span style="color:#a6e22e">io</span>.<span style="color:#a6e22e">imread</span>(<span style="color:#a6e22e">data</span>[<span style="color:#e6db74">&#39;imagePath&#39;</span>]) <span style="color:#960050;background-color:#1e0010">#</span> <span style="color:#a6e22e">通过图片路径打开图片</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#960050;background-color:#1e0010">#</span> <span style="color:#a6e22e">img</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">cv2</span>.<span style="color:#a6e22e">imread</span>(<span style="color:#a6e22e">data</span>[<span style="color:#e6db74">&#39;imagePath&#39;</span>], <span style="color:#ae81ff">0</span>)
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">height</span>, <span style="color:#a6e22e">width</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">img</span>.<span style="color:#a6e22e">shape</span>[<span style="color:#f92672">:</span><span style="color:#ae81ff">2</span>]
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">img</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">None</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">image</span>[<span style="color:#e6db74">&#39;height&#39;</span>] <span style="color:#f92672">=</span> <span style="color:#a6e22e">height</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">image</span>[<span style="color:#e6db74">&#39;width&#39;</span>] <span style="color:#f92672">=</span> <span style="color:#a6e22e">width</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">image</span>[<span style="color:#e6db74">&#39;id&#39;</span>] <span style="color:#f92672">=</span> <span style="color:#a6e22e">num</span> <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">image</span>[<span style="color:#e6db74">&#39;file_name&#39;</span>] <span style="color:#f92672">=</span> <span style="color:#a6e22e">data</span>[<span style="color:#e6db74">&#39;imagePath&#39;</span>].<span style="color:#a6e22e">split</span>(<span style="color:#e6db74">&#39;/&#39;</span>)[<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>]
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">self</span>.<span style="color:#a6e22e">height</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">height</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">self</span>.<span style="color:#a6e22e">width</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">width</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">image</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">def</span> <span style="color:#a6e22e">categorie</span>(<span style="color:#a6e22e">self</span>, <span style="color:#a6e22e">label</span>)<span style="color:#f92672">:</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">categorie</span> <span style="color:#f92672">=</span> {}
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">categorie</span>[<span style="color:#e6db74">&#39;supercategory&#39;</span>] <span style="color:#f92672">=</span> <span style="color:#a6e22e">label</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">categorie</span>[<span style="color:#e6db74">&#39;id&#39;</span>] <span style="color:#f92672">=</span> <span style="color:#a6e22e">len</span>(<span style="color:#a6e22e">self</span>.<span style="color:#a6e22e">label</span>) <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>  <span style="color:#960050;background-color:#1e0010">#</span> <span style="color:#ae81ff">0</span> <span style="color:#a6e22e">默认为背景</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">categorie</span>[<span style="color:#e6db74">&#39;name&#39;</span>] <span style="color:#f92672">=</span> <span style="color:#a6e22e">label</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">categorie</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">def</span> <span style="color:#a6e22e">annotation</span>(<span style="color:#a6e22e">self</span>, <span style="color:#a6e22e">points</span>, <span style="color:#a6e22e">label</span>, <span style="color:#a6e22e">num</span>)<span style="color:#f92672">:</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">annotation</span> <span style="color:#f92672">=</span> {}
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">annotation</span>[<span style="color:#e6db74">&#39;segmentation&#39;</span>] <span style="color:#f92672">=</span> [<span style="color:#a6e22e">list</span>(<span style="color:#a6e22e">np</span>.<span style="color:#a6e22e">asarray</span>(<span style="color:#a6e22e">points</span>).<span style="color:#a6e22e">flatten</span>())]
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">poly</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">Polygon</span>(<span style="color:#a6e22e">points</span>)
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">area_</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">round</span>(<span style="color:#a6e22e">poly</span>.<span style="color:#a6e22e">area</span>, <span style="color:#ae81ff">6</span>)
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">annotation</span>[<span style="color:#e6db74">&#39;area&#39;</span>] <span style="color:#f92672">=</span> <span style="color:#a6e22e">area_</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">annotation</span>[<span style="color:#e6db74">&#39;iscrowd&#39;</span>] <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">annotation</span>[<span style="color:#e6db74">&#39;image_id&#39;</span>] <span style="color:#f92672">=</span> <span style="color:#a6e22e">num</span> <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#960050;background-color:#1e0010">#</span> <span style="color:#a6e22e">annotation</span>[<span style="color:#e6db74">&#39;bbox&#39;</span>] <span style="color:#f92672">=</span> <span style="color:#a6e22e">str</span>(<span style="color:#a6e22e">self</span>.<span style="color:#a6e22e">getbbox</span>(<span style="color:#a6e22e">points</span>)) <span style="color:#960050;background-color:#1e0010">#</span> <span style="color:#a6e22e">使用list保存json文件时报错</span><span style="color:#960050;background-color:#1e0010">（</span><span style="color:#a6e22e">不知道为什么</span><span style="color:#960050;background-color:#1e0010">）</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#960050;background-color:#1e0010">#</span> <span style="color:#a6e22e">list</span>(<span style="color:#a6e22e">map</span>(<span style="color:#66d9ef">int</span>,<span style="color:#a6e22e">a</span>[<span style="color:#ae81ff">1</span><span style="color:#f92672">:-</span><span style="color:#ae81ff">1</span>].<span style="color:#a6e22e">split</span>(<span style="color:#e6db74">&#39;,&#39;</span>))) <span style="color:#a6e22e">a</span><span style="color:#f92672">=</span><span style="color:#a6e22e">annotation</span>[<span style="color:#e6db74">&#39;bbox&#39;</span>] <span style="color:#a6e22e">使用该方式转成list</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">annotation</span>[<span style="color:#e6db74">&#39;bbox&#39;</span>] <span style="color:#f92672">=</span> <span style="color:#a6e22e">list</span>(<span style="color:#a6e22e">map</span>(<span style="color:#66d9ef">float</span>, <span style="color:#a6e22e">self</span>.<span style="color:#a6e22e">getbbox</span>(<span style="color:#a6e22e">points</span>)))
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">annotation</span>[<span style="color:#e6db74">&#39;category_id&#39;</span>] <span style="color:#f92672">=</span> <span style="color:#a6e22e">self</span>.<span style="color:#a6e22e">getcatid</span>(<span style="color:#a6e22e">label</span>)
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">annotation</span>[<span style="color:#e6db74">&#39;id&#39;</span>] <span style="color:#f92672">=</span> <span style="color:#a6e22e">self</span>.<span style="color:#a6e22e">annID</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">annotation</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">def</span> <span style="color:#a6e22e">getcatid</span>(<span style="color:#a6e22e">self</span>, <span style="color:#a6e22e">label</span>)<span style="color:#f92672">:</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">for</span> <span style="color:#a6e22e">categorie</span> <span style="color:#66d9ef">in</span> <span style="color:#a6e22e">self</span>.<span style="color:#a6e22e">categories</span><span style="color:#f92672">:</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">if</span> <span style="color:#a6e22e">label</span> <span style="color:#f92672">==</span> <span style="color:#a6e22e">categorie</span>[<span style="color:#e6db74">&#39;name&#39;</span>]<span style="color:#f92672">:</span>
+</span></span><span style="display:flex;"><span>                <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">categorie</span>[<span style="color:#e6db74">&#39;id&#39;</span>]
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">def</span> <span style="color:#a6e22e">getbbox</span>(<span style="color:#a6e22e">self</span>, <span style="color:#a6e22e">points</span>)<span style="color:#f92672">:</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#960050;background-color:#1e0010">#</span> <span style="color:#a6e22e">img</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">np</span>.<span style="color:#a6e22e">zeros</span>([<span style="color:#a6e22e">self</span>.<span style="color:#a6e22e">height</span>,<span style="color:#a6e22e">self</span>.<span style="color:#a6e22e">width</span>],<span style="color:#a6e22e">np</span>.<span style="color:#a6e22e">uint8</span>)
+</span></span><span style="display:flex;"><span>        <span style="color:#960050;background-color:#1e0010">#</span> <span style="color:#a6e22e">cv2</span>.<span style="color:#a6e22e">polylines</span>(<span style="color:#a6e22e">img</span>, [<span style="color:#a6e22e">np</span>.<span style="color:#a6e22e">asarray</span>(<span style="color:#a6e22e">points</span>)], <span style="color:#a6e22e">True</span>, <span style="color:#ae81ff">1</span>, <span style="color:#a6e22e">lineType</span><span style="color:#f92672">=</span><span style="color:#a6e22e">cv2</span>.<span style="color:#a6e22e">LINE_AA</span>)<span style="color:#960050;background-color:#1e0010">　#</span> <span style="color:#a6e22e">画边界线</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#960050;background-color:#1e0010">#</span> <span style="color:#a6e22e">cv2</span>.<span style="color:#a6e22e">fillPoly</span>(<span style="color:#a6e22e">img</span>, [<span style="color:#a6e22e">np</span>.<span style="color:#a6e22e">asarray</span>(<span style="color:#a6e22e">points</span>)], <span style="color:#ae81ff">1</span>)<span style="color:#960050;background-color:#1e0010">　#</span> <span style="color:#a6e22e">画多边形</span> <span style="color:#a6e22e">内部像素值为1</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">polygons</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">points</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">mask</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">self</span>.<span style="color:#a6e22e">polygons_to_mask</span>([<span style="color:#a6e22e">self</span>.<span style="color:#a6e22e">height</span>, <span style="color:#a6e22e">self</span>.<span style="color:#a6e22e">width</span>], <span style="color:#a6e22e">polygons</span>)
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">self</span>.<span style="color:#a6e22e">mask2box</span>(<span style="color:#a6e22e">mask</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">def</span> <span style="color:#a6e22e">mask2box</span>(<span style="color:#a6e22e">self</span>, <span style="color:#a6e22e">mask</span>)<span style="color:#f92672">:</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#39;&#39;&#39;从mask反算出其边框
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">        mask：[h,w]　0、1组成的图片
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">        1对应对象，只需计算1对应的行列号（左上角行列号，右下角行列号，就可以算出其边框）
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">        &#39;&#39;&#39;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#960050;background-color:#1e0010">#</span> <span style="color:#a6e22e">np</span>.<span style="color:#a6e22e">where</span>(<span style="color:#a6e22e">mask</span><span style="color:#f92672">==</span><span style="color:#ae81ff">1</span>)
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">index</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">np</span>.<span style="color:#a6e22e">argwhere</span>(<span style="color:#a6e22e">mask</span> <span style="color:#f92672">==</span> <span style="color:#ae81ff">1</span>)
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">rows</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">index</span>[<span style="color:#f92672">:</span>, <span style="color:#ae81ff">0</span>]
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">clos</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">index</span>[<span style="color:#f92672">:</span>, <span style="color:#ae81ff">1</span>]
+</span></span><span style="display:flex;"><span>        <span style="color:#960050;background-color:#1e0010">#</span> <span style="color:#a6e22e">解析左上角行列号</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">left_top_r</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">np</span>.<span style="color:#a6e22e">min</span>(<span style="color:#a6e22e">rows</span>)  <span style="color:#960050;background-color:#1e0010">#</span> <span style="color:#a6e22e">y</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">left_top_c</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">np</span>.<span style="color:#a6e22e">min</span>(<span style="color:#a6e22e">clos</span>)  <span style="color:#960050;background-color:#1e0010">#</span> <span style="color:#a6e22e">x</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#960050;background-color:#1e0010">#</span> <span style="color:#a6e22e">解析右下角行列号</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">right_bottom_r</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">np</span>.<span style="color:#a6e22e">max</span>(<span style="color:#a6e22e">rows</span>)
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">right_bottom_c</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">np</span>.<span style="color:#a6e22e">max</span>(<span style="color:#a6e22e">clos</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#960050;background-color:#1e0010">#</span> <span style="color:#66d9ef">return</span> [(<span style="color:#a6e22e">left_top_r</span>,<span style="color:#a6e22e">left_top_c</span>),(<span style="color:#a6e22e">right_bottom_r</span>,<span style="color:#a6e22e">right_bottom_c</span>)]
+</span></span><span style="display:flex;"><span>        <span style="color:#960050;background-color:#1e0010">#</span> <span style="color:#66d9ef">return</span> [(<span style="color:#a6e22e">left_top_c</span>, <span style="color:#a6e22e">left_top_r</span>), (<span style="color:#a6e22e">right_bottom_c</span>, <span style="color:#a6e22e">right_bottom_r</span>)]
+</span></span><span style="display:flex;"><span>        <span style="color:#960050;background-color:#1e0010">#</span> <span style="color:#66d9ef">return</span> [<span style="color:#a6e22e">left_top_c</span>, <span style="color:#a6e22e">left_top_r</span>, <span style="color:#a6e22e">right_bottom_c</span>, <span style="color:#a6e22e">right_bottom_r</span>]<span style="color:#960050;background-color:#1e0010">#</span> [<span style="color:#a6e22e">x1</span>,<span style="color:#a6e22e">y1</span>,<span style="color:#a6e22e">x2</span>,<span style="color:#a6e22e">y2</span>]
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> [<span style="color:#a6e22e">left_top_c</span>, <span style="color:#a6e22e">left_top_r</span>, <span style="color:#a6e22e">right_bottom_c</span> <span style="color:#f92672">-</span> <span style="color:#a6e22e">left_top_c</span>,
+</span></span><span style="display:flex;"><span>                <span style="color:#a6e22e">right_bottom_r</span> <span style="color:#f92672">-</span> <span style="color:#a6e22e">left_top_r</span>]  <span style="color:#960050;background-color:#1e0010">#</span> [<span style="color:#a6e22e">x1</span>,<span style="color:#a6e22e">y1</span>,<span style="color:#a6e22e">w</span>,<span style="color:#a6e22e">h</span>] <span style="color:#a6e22e">对应COCO的bbox格式</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">def</span> <span style="color:#a6e22e">polygons_to_mask</span>(<span style="color:#a6e22e">self</span>, <span style="color:#a6e22e">img_shape</span>, <span style="color:#a6e22e">polygons</span>)<span style="color:#f92672">:</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">mask</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">np</span>.<span style="color:#a6e22e">zeros</span>(<span style="color:#a6e22e">img_shape</span>, <span style="color:#a6e22e">dtype</span><span style="color:#f92672">=</span><span style="color:#a6e22e">np</span>.<span style="color:#a6e22e">uint8</span>)
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">mask</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">PIL</span>.<span style="color:#a6e22e">Image</span>.<span style="color:#a6e22e">fromarray</span>(<span style="color:#a6e22e">mask</span>)
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">xy</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">list</span>(<span style="color:#a6e22e">map</span>(<span style="color:#a6e22e">tuple</span>, <span style="color:#a6e22e">polygons</span>))
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">PIL</span>.<span style="color:#a6e22e">ImageDraw</span>.<span style="color:#a6e22e">Draw</span>(<span style="color:#a6e22e">mask</span>).<span style="color:#a6e22e">polygon</span>(<span style="color:#a6e22e">xy</span><span style="color:#f92672">=</span><span style="color:#a6e22e">xy</span>, <span style="color:#a6e22e">outline</span><span style="color:#f92672">=</span><span style="color:#ae81ff">1</span>, <span style="color:#a6e22e">fill</span><span style="color:#f92672">=</span><span style="color:#ae81ff">1</span>)
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">mask</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">np</span>.<span style="color:#a6e22e">array</span>(<span style="color:#a6e22e">mask</span>, <span style="color:#a6e22e">dtype</span><span style="color:#f92672">=</span><span style="color:#a6e22e">bool</span>)
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">mask</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">def</span> <span style="color:#a6e22e">data2coco</span>(<span style="color:#a6e22e">self</span>)<span style="color:#f92672">:</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">data_coco</span> <span style="color:#f92672">=</span> {}
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">data_coco</span>[<span style="color:#e6db74">&#39;images&#39;</span>] <span style="color:#f92672">=</span> <span style="color:#a6e22e">self</span>.<span style="color:#a6e22e">images</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">data_coco</span>[<span style="color:#e6db74">&#39;categories&#39;</span>] <span style="color:#f92672">=</span> <span style="color:#a6e22e">self</span>.<span style="color:#a6e22e">categories</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">data_coco</span>[<span style="color:#e6db74">&#39;annotations&#39;</span>] <span style="color:#f92672">=</span> <span style="color:#a6e22e">self</span>.<span style="color:#a6e22e">annotations</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">data_coco</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">def</span> <span style="color:#a6e22e">save_json</span>(<span style="color:#a6e22e">self</span>)<span style="color:#f92672">:</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">self</span>.<span style="color:#a6e22e">data_transfer</span>()
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">self</span>.<span style="color:#a6e22e">data_coco</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">self</span>.<span style="color:#a6e22e">data2coco</span>()
+</span></span><span style="display:flex;"><span>        <span style="color:#960050;background-color:#1e0010">#</span> <span style="color:#a6e22e">保存json文件</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">json</span>.<span style="color:#a6e22e">dump</span>(<span style="color:#a6e22e">self</span>.<span style="color:#a6e22e">data_coco</span>, <span style="color:#a6e22e">open</span>(<span style="color:#a6e22e">self</span>.<span style="color:#a6e22e">save_json_path</span>, <span style="color:#e6db74">&#39;w&#39;</span>), <span style="color:#a6e22e">indent</span><span style="color:#f92672">=</span><span style="color:#ae81ff">4</span>)  <span style="color:#960050;background-color:#1e0010">#</span> <span style="color:#a6e22e">indent</span><span style="color:#f92672">=</span><span style="color:#ae81ff">4</span> <span style="color:#a6e22e">更加美观显示</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">labelme_json</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">glob</span>.<span style="color:#a6e22e">glob</span>(<span style="color:#e6db74">&#39;./*.json&#39;</span>)
+</span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">#</span> <span style="color:#a6e22e">labelme_json</span><span style="color:#f92672">=</span>[<span style="color:#e6db74">&#39;./1.json&#39;</span>]
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">labelme2coco</span>(<span style="color:#a6e22e">labelme_json</span>, <span style="color:#e6db74">&#39;instances_train2017.json&#39;</span>)
+</span></span></code></pre></div><p>注意：没有shapely的，可以pip install shapely 直接下载</p>
+<p>在tran2017文件夹运行labelme2coco.py之后，会在当前目录生成instances_train2017.json文件，同理，在val2017文件夹运行labelme2coco.py，代码最后一行需要修改成labelme2coco(labelme_json, &lsquo;instances_val2017.json&rsquo;),会在当前目录生成instances_val2017.json文件。</p>
+<p>之后，将生成的instances_train2017.json和instances_val2017.json移动到annotations。
+<img src="/images/ai/mmdet_mask/3.jpg" alt="在这里插入图片描述">
+数据集到这一步已经制作完成。</p>
+<h1 id="配置">配置</h1>
+<h2 id="修改cocopy">修改coco.py</h2>
+<p>coco.py文件在 <strong>mmdetection/mmdet/datasets</strong>下，将CLASSES替换成自己的classes.
+<img src="/images/ai/mmdet_mask/4.jpg" alt="在这里插入图片描述"></p>
+<h2 id="修改class_namespy">修改class_names.py</h2>
+<p>class_names.py在<strong>mmdetection/mmdet/core/evaluation</strong>，将return的内容改成自己的class。
+<img src="/images/ai/mmdet_mask/5.jpg" alt="在这里插入图片描述"></p>
+<h2 id="修改coco_instancepy">修改coco_instance.py</h2>
+<p>coco_instance.py在<strong>mmdetection/configs/<em>base</em>/datasets</strong>下，主要根据自己的数据集修改mean和std。
+<img src="/images/ai/mmdet_mask/6.jpg" alt="在这里插入图片描述"></p>
+<h2 id="修改schedules_1xpy">修改schedules_1x.py</h2>
+<p>schedules_1x.py在<strong>mmdetection/configs/<em>base</em>/schedules</strong>下，<strong>lr</strong>(学习率)官方是8张GPU ==&gt; 0.02，如果没有特别说明学习率，一般都是线性计算的，即4张GPU就0.01，两张就0.005，以此类推。
+另外如果要修改total_epochs，别忘了修改10行的step, step两个值一般为total_epochs的80%和90%，表示在该epochs修改学习率。
+<img src="/images/ai/mmdet_mask/7.jpg" alt="在这里插入图片描述"></p>
+<h2 id="修改default_runtimepy">修改default_runtime.py</h2>
+<p>default_runtime.py在**mmdetection/configs/<em>base</em>**下，根据自己的情况修改1, 4，13行的内容，其他地方基本不用改。
+<img src="/images/ai/mmdet_mask/8.jpg" alt="在这里插入图片描述"></p>
+<h2 id="修改mask_rcnn_r50_fpnpy">修改mask_rcnn_r50_fpn.py</h2>
+<p>mask_rcnn_r50_fpn.py在<strong>mmdetection/configs/<em>base</em>/models</strong>下，将pretrained改成None，（否则会下载权重），将num_classes改成自己的类别。
+<img src="/images/ai/mmdet_mask/9.jpg" alt="在这里插入图片描述">
+<img src="/images/ai/mmdet_mask/10.jpg" alt="在这里插入图片描述"></p>
+<h1 id="训练">训练</h1>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#75715e">#单GPU</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>python tools<span style="color:#f92672">/</span>train<span style="color:#f92672">.</span>py <span style="color:#960050;background-color:#1e0010">$</span> {CONFIG_FILE} [可选参数]
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#多GPU</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">./</span>tools<span style="color:#f92672">/</span>dist_train<span style="color:#f92672">.</span>sh <span style="color:#960050;background-color:#1e0010">$</span> {CONFIG_FILE}  <span style="color:#960050;background-color:#1e0010">$</span> {GPU_NUM} [可选参数]
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>CONFIG_FILE为训练的网络参数<span style="color:#960050;background-color:#1e0010">。</span>
+</span></span><span style="display:flex;"><span>GPU_NUM为GPU数量<span style="color:#960050;background-color:#1e0010">。</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>可选参数为<span style="color:#960050;background-color:#1e0010">：</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">--</span>no<span style="color:#f92672">-</span>validate<span style="color:#960050;background-color:#1e0010">（</span>不建议<span style="color:#960050;background-color:#1e0010">）：</span>默认情况下<span style="color:#960050;background-color:#1e0010">，</span>在训练期间<span style="color:#960050;background-color:#1e0010">，</span>代码库将在每k个epoch<span style="color:#960050;background-color:#1e0010">（</span>默认值为1<span style="color:#960050;background-color:#1e0010">，</span>可以像这样修改<span style="color:#960050;background-color:#1e0010">）</span>进行评估<span style="color:#960050;background-color:#1e0010">。</span>若要禁用此行为<span style="color:#960050;background-color:#1e0010">，</span>请使用<span style="color:#f92672">--</span>no<span style="color:#f92672">-</span>validate<span style="color:#960050;background-color:#1e0010">。</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">--</span>work<span style="color:#f92672">-</span>dir <span style="color:#960050;background-color:#1e0010">$</span>{WORK_DIR}<span style="color:#960050;background-color:#1e0010">：</span>覆盖配置文件中指定的工作目录<span style="color:#960050;background-color:#1e0010">。</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">--</span>resume<span style="color:#f92672">-</span><span style="color:#f92672">from</span> <span style="color:#960050;background-color:#1e0010">$</span>{CHECKPOINT_FILE}<span style="color:#960050;background-color:#1e0010">：</span>从先前的检查点文件继续<span style="color:#960050;background-color:#1e0010">。</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">--</span>cfg<span style="color:#f92672">-</span>options <span style="color:#e6db74">&#39;Key=value&#39;</span><span style="color:#960050;background-color:#1e0010">：</span>在使用的配置中覆盖一些设置<span style="color:#960050;background-color:#1e0010">。</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>注意<span style="color:#960050;background-color:#1e0010">：</span>
+</span></span><span style="display:flex;"><span>resume<span style="color:#f92672">-</span>from同时加载模型权重和优化器状态<span style="color:#960050;background-color:#1e0010">，​​</span>并且epoch也从指定的检查点继承<span style="color:#960050;background-color:#1e0010">。</span>它通常用于恢复意外中断的训练过程<span style="color:#960050;background-color:#1e0010">。</span>
+</span></span><span style="display:flex;"><span>为了更清楚地使用<span style="color:#960050;background-color:#1e0010">，</span>load<span style="color:#f92672">-</span>from不建议使用原件<span style="color:#960050;background-color:#1e0010">，</span>而可以<span style="color:#f92672">--</span>cfg<span style="color:#f92672">-</span>options <span style="color:#e6db74">&#39;load_from=&#34;path/to/you/model&#34;&#39;</span>改用<span style="color:#960050;background-color:#1e0010">。</span>它仅加载模型权重<span style="color:#960050;background-color:#1e0010">，</span>训练时期从0开始<span style="color:#960050;background-color:#1e0010">，</span>通常用于微调<span style="color:#960050;background-color:#1e0010">。</span>
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#75715e">#我这次训练mask_rcnn</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#不指定--work-dir参数会在默认路径下保存。</span>
+</span></span><span style="display:flex;"><span>python tools<span style="color:#f92672">/</span>train<span style="color:#f92672">.</span>py configs<span style="color:#f92672">/</span>mask_rcnn<span style="color:#f92672">/</span>mask_rcnn_r50_fpn_1x_coco<span style="color:#f92672">.</span>py
+</span></span></code></pre></div><p>mask_rcnn_r50_fpn_1x_coco.py 内容</p>
+<p><img src="/images/ai/mmdet_mask/11.jpg" alt="在这里插入图片描述"></p>
+<p>训练只有，会在默认路径work_dirs下生成对应网络的文件夹，文件夹里包含日志和权重。
+<img src="/images/ai/mmdet_mask/12.jpg" alt="在这里插入图片描述"></p>
+<h1 id="测试">测试</h1>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span><span style="color:#75715e"># 单GPU
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>python tools<span style="color:#f92672">/</span>test.py <span style="color:#960050;background-color:#1e0010">$</span>{CONFIG_FILE} <span style="color:#960050;background-color:#1e0010">$</span>{CHECKPOINT_FILE} [<span style="color:#f92672">--</span>out <span style="color:#960050;background-color:#1e0010">$</span>{RESULT_FILE}] [<span style="color:#f92672">--</span>eval <span style="color:#960050;background-color:#1e0010">$</span>{EVAL_METRICS}] [<span style="color:#f92672">--</span>show] [<span style="color:#f92672">--</span>cfg<span style="color:#f92672">-</span>options]
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 多GPU
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>.<span style="color:#f92672">/</span>tools<span style="color:#f92672">/</span>dist_test.sh <span style="color:#960050;background-color:#1e0010">$</span>{CONFIG_FILE} <span style="color:#960050;background-color:#1e0010">$</span>{CHECKPOINT_FILE} <span style="color:#960050;background-color:#1e0010">$</span>{GPU_NUM} [<span style="color:#f92672">--</span>out <span style="color:#960050;background-color:#1e0010">$</span>{RESULT_FILE}] [<span style="color:#f92672">--</span>eval <span style="color:#960050;background-color:#1e0010">$</span>{EVAL_METRICS}] [<span style="color:#f92672">--</span>cfg<span style="color:#f92672">-</span>options]
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">可选参数：</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>RESULT_FILE<span style="color:#960050;background-color:#1e0010">：输出结果的文件名采用</span>pickle<span style="color:#960050;background-color:#1e0010">格式。如果未指定，结果将不会保存到文件中。</span>
+</span></span><span style="display:flex;"><span>EVAL_METRICS<span style="color:#960050;background-color:#1e0010">：要根据结果评估的项目。允许的值取决于数据集，例如</span>proposal_fast<span style="color:#960050;background-color:#1e0010">，</span>proposal<span style="color:#960050;background-color:#1e0010">，</span>bbox<span style="color:#960050;background-color:#1e0010">，</span>segm<span style="color:#960050;background-color:#1e0010">可用于</span>COCO<span style="color:#960050;background-color:#1e0010">，</span> mAP<span style="color:#960050;background-color:#1e0010">，</span>recall<span style="color:#960050;background-color:#1e0010">用于</span>PASCAL VOC<span style="color:#960050;background-color:#1e0010">。</span>Cityscapes<span style="color:#960050;background-color:#1e0010">可以通过</span>cityscapes<span style="color:#960050;background-color:#1e0010">以及所有</span>COCO<span style="color:#960050;background-color:#1e0010">指标进行评估。</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">--</span>show<span style="color:#960050;background-color:#1e0010">：如果指定，检测结果将绘制在图像上并显示在新窗口中。它仅适用于单个</span>GPU<span style="color:#960050;background-color:#1e0010">测试，并用于调试和可视化。请确保您的环境中可以使用</span>GUI<span style="color:#960050;background-color:#1e0010">，否则您可能会遇到类似的错误</span>cannot connect to X server<span style="color:#960050;background-color:#1e0010">。</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">--</span>show<span style="color:#f92672">-</span>dir<span style="color:#960050;background-color:#1e0010">：如果指定，检测结果将绘制在图像上并保存到指定目录。它仅适用于单个</span>GPU<span style="color:#960050;background-color:#1e0010">测试，并用于调试和可视化。您不需要环境中的</span>GUI<span style="color:#960050;background-color:#1e0010">即可使用此选项。</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">--</span>show<span style="color:#f92672">-</span>score<span style="color:#f92672">-</span>thr<span style="color:#960050;background-color:#1e0010">：如果指定，则得分低于此阈值的检测将被删除。</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">--</span>cfg<span style="color:#f92672">-</span>options<span style="color:#960050;background-color:#1e0010">：如果指定，则使用的配置中的某些设置将被覆盖。</span>
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span><span style="color:#75715e">#我的测试命令
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>python tools<span style="color:#f92672">/</span>test.py configs<span style="color:#f92672">/</span>mask_rcnn<span style="color:#f92672">/</span>mask_rcnn_r50_fpn_1x_coco.py work_dirs<span style="color:#f92672">/</span>mask_rcnn_r50_fpn_1x_coco<span style="color:#f92672">/</span>epoch_12.pth <span style="color:#f92672">--</span>show<span style="color:#f92672">-</span>dir work_dirs<span style="color:#f92672">/</span>result <span style="color:#f92672">--</span>eval segm
+</span></span></code></pre></div><p><img src="/images/ai/mmdet_mask/13.jpg" alt="在这里插入图片描述"></p>
+<h1 id="训练其他网络的建议">训练其他网络的建议</h1>
+<p>训练其他网络应该大同小异，修改对应的参数即可。我的思路是先找到config目录下想要训练的网络，比如faster_rcnn下的faster_rcnn_r50_fpn_1x_coco.py，打开之后，根据自己的需求修改对应的文件即可。
+<img src="/images/ai/mmdet_mask/14.jpg" alt="在这里插入图片描述">
+另外，数据的格式并不一定要求coco,现在mmdetection支持很多数据集格式，有兴趣的可以去官网上面看看。</p>
+
+        </p>
+        
+    </div>
+
+    <div class="prev-next">
+        
+    </div>
+</div>
+
+<aside class="post-toc">
+    <nav id="toc">
+        <nav id="TableOfContents">
+  <ul>
+    <li><a href="#git">Git</a></li>
+    <li><a href="#数据集准备">数据集准备</a></li>
+    <li><a href="#配置">配置</a>
+      <ul>
+        <li><a href="#修改cocopy">修改coco.py</a></li>
+        <li><a href="#修改class_namespy">修改class_names.py</a></li>
+        <li><a href="#修改coco_instancepy">修改coco_instance.py</a></li>
+        <li><a href="#修改schedules_1xpy">修改schedules_1x.py</a></li>
+        <li><a href="#修改default_runtimepy">修改default_runtime.py</a></li>
+        <li><a href="#修改mask_rcnn_r50_fpnpy">修改mask_rcnn_r50_fpn.py</a></li>
+      </ul>
+    </li>
+    <li><a href="#训练">训练</a></li>
+    <li><a href="#测试">测试</a></li>
+    <li><a href="#训练其他网络的建议">训练其他网络的建议</a></li>
+  </ul>
+</nav>
+    </nav>
+</aside>
+
+
+
+    
+
+        </main><footer class="footer">
+    
+    
+
+    
+    <span>&copy; 2023 The Marauders</span>
+    
+    <span>
+        Made with &#10084;&#65039; using <a target="_blank">xhikun</a>
+    </span>
+</footer>
+</body>
+</html>

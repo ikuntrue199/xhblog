@@ -6,31 +6,40 @@
     <description>Recent content in Tags on xhikun</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Fri, 30 Jun 2023 16:22:11 +0800</lastBuildDate><atom:link href="https://blog.wjxuikun.eu.org/tags/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 20 Jul 2023 11:01:42 +0800</lastBuildDate><atom:link href="https://blog.wjxuikun.eu.org/tags/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>docker</title>
+      <link>https://blog.wjxuikun.eu.org/tags/docker/</link>
+      <pubDate>Thu, 20 Jul 2023 11:01:42 +0800</pubDate>
+      
+      <guid>https://blog.wjxuikun.eu.org/tags/docker/</guid>
+      <description></description>
+    </item>
+    
     <item>
       <title>问题记录</title>
       <link>https://blog.wjxuikun.eu.org/tags/%E9%97%AE%E9%A2%98%E8%AE%B0%E5%BD%95/</link>
-      <pubDate>Fri, 30 Jun 2023 16:22:11 +0800</pubDate>
+      <pubDate>Sun, 02 Jul 2023 15:46:50 +0800</pubDate>
       
       <guid>https://blog.wjxuikun.eu.org/tags/%E9%97%AE%E9%A2%98%E8%AE%B0%E5%BD%95/</guid>
       <description></description>
     </item>
     
     <item>
-      <title>问题</title>
-      <link>https://blog.wjxuikun.eu.org/tags/%E9%97%AE%E9%A2%98/</link>
+      <title>日常</title>
+      <link>https://blog.wjxuikun.eu.org/tags/%E6%97%A5%E5%B8%B8/</link>
       <pubDate>Wed, 28 Jun 2023 17:03:21 +0800</pubDate>
       
-      <guid>https://blog.wjxuikun.eu.org/tags/%E9%97%AE%E9%A2%98/</guid>
+      <guid>https://blog.wjxuikun.eu.org/tags/%E6%97%A5%E5%B8%B8/</guid>
       <description></description>
     </item>
     
     <item>
-      <title>技术</title>
-      <link>https://blog.wjxuikun.eu.org/tags/%E6%8A%80%E6%9C%AF/</link>
+      <title>深度学习</title>
+      <link>https://blog.wjxuikun.eu.org/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/</link>
       <pubDate>Tue, 30 Jun 2020 16:22:11 +0800</pubDate>
       
-      <guid>https://blog.wjxuikun.eu.org/tags/%E6%8A%80%E6%9C%AF/</guid>
+      <guid>https://blog.wjxuikun.eu.org/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/</guid>
       <description></description>
     </item>
     

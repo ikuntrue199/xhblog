@@ -6,13 +6,34 @@
     <description>Recent content in 问题记录 on xhikun</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Fri, 30 Jun 2023 16:22:11 +0800</lastBuildDate><atom:link href="https://blog.wjxuikun.eu.org/tags/%E9%97%AE%E9%A2%98%E8%AE%B0%E5%BD%95/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 02 Jul 2023 15:46:50 +0800</lastBuildDate><atom:link href="https://blog.wjxuikun.eu.org/tags/%E9%97%AE%E9%A2%98%E8%AE%B0%E5%BD%95/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>自启动</title>
+      <link>https://blog.wjxuikun.eu.org/posts/question/self-starting/</link>
+      <pubDate>Sun, 02 Jul 2023 15:46:50 +0800</pubDate>
+      
+      <guid>https://blog.wjxuikun.eu.org/posts/question/self-starting/</guid>
+      <description>ubuntu-18.04不能像ubuntu14一样通过编辑rc.local来设置开机启动脚本，通过下列简单设置后，可以使rc.local重新发挥作用。
+建立rc-local.service文件 sudo vi /etc/systemd/system/rc-local.service 将下列内容复制进rc-local.service文件 [Unit] Description=/etc/rc.local Compatibility ConditionPathExists=/etc/rc.local [Service] Type=forking ExecStart=/etc/rc.local start TimeoutSec=0 StandardOutput=tty RemainAfterExit=yes SysVStartPriority=99 [Install] WantedBy=multi-user.target 创建文件rc.local　sudo vi /etc/rc.local 将下列内容复制进rc.local文件 #!/bin/sh -e # # rc.local # # This script is executed at the end of each multiuser runlevel. # Make sure that the script will &amp;#34;exit 0&amp;#34; on success or any other # value on error. # # In order to enable or disable this script just change the execution # bits.</description>
+    </item>
+    
+    <item>
+      <title>python、ubuntu换源</title>
+      <link>https://blog.wjxuikun.eu.org/posts/question/yuan/</link>
+      <pubDate>Sat, 01 Jul 2023 11:35:59 +0800</pubDate>
+      
+      <guid>https://blog.wjxuikun.eu.org/posts/question/yuan/</guid>
+      <description>简单记录一下曾经用过的下载源，包含python,ubuntu
+python # 腾讯 http://mirrors.tencentyun.com/pypi/simple # 阿里 https://mirrors.aliyun.com/pypi/simple # 豆瓣 https://pypi.douban.com/simple # 中科大 https://pypi.mirrors.ustc.edu.cn/simple/ # 清华 https://pypi.tuna.tsinghua.edu.cn/simple ubuntu 推荐一个ubuntu16.04的arm源，之前部署某厂商的边缘盒子用到，但是版本号又是18.04的，很奇怪，不对最终也能用，因此记录一下
+# 阿里云 deb http://mirrors.tuna.tsinghua.edu.cn/ubuntu-ports/ bionic main multiverse restricted universe deb http://mirrors.tuna.tsinghua.edu.cn/ubuntu-ports/ bionic-security main multiverse restricted universe deb http://mirrors.tuna.tsinghua.edu.cn/ubuntu-ports/ bionic-updates main multiverse restricted universe deb http://mirrors.tuna.tsinghua.edu.cn/ubuntu-ports/ bionic-backports main multiverse restricted universe deb-src http://mirrors.tuna.tsinghua.edu.cn/ubuntu-ports/ bionic main multiverse restricted universe deb-src http://mirrors.tuna.tsinghua.edu.cn/ubuntu-ports/ bionic-security main multiverse restricted universe deb-src http://mirrors.tuna.tsinghua.edu.cn/ubuntu-ports/ bionic-updates main multiverse restricted universe deb-src http://mirrors.</description>
+    </item>
+    
     <item>
       <title>利用python opencv，将处理过后的图片，保存为html5支持的mp4</title>
-      <link>https://blog.wjxuikun.eu.org/posts/20230630-1/</link>
+      <link>https://blog.wjxuikun.eu.org/posts/question/opencv_tohtml5/</link>
       <pubDate>Fri, 30 Jun 2023 16:22:11 +0800</pubDate>
       
-      <guid>https://blog.wjxuikun.eu.org/posts/20230630-1/</guid>
+      <guid>https://blog.wjxuikun.eu.org/posts/question/opencv_tohtml5/</guid>
       <description>我使用的是ubuntu系统，遇到python opencv生成的视频，无法在浏览器上播放，之前用C++ 写的时候，直接将fourcc设置为h264编码的一种即可（apt 直接装的opencv）
 CV_FOURCC(&amp;#39;a&amp;#39;, &amp;#39;v&amp;#39;, &amp;#39;c&amp;#39;, &amp;#39;1&amp;#39;) 以为python opencv也可简单的设置，但是不行，google一下，发现python opencv 通过pip下载的不包含h264编码器，需要从源码编译才行，个人觉得太麻烦，直接舍弃，于是采用ffmepg转码，简单粗暴。
 #主要转码代码为 def convertToMP4(inputPath): outputPath = inputPath[:-3] + &amp;#39;mp4&amp;#39; cmd = &amp;#39;ffmpeg -y -i {} -vcodec h264 {}&amp;#39;.format(input_file_path, output_file_path) subprocess.call(cmd, shell=True) return outputPath 转换完成的视频，可流畅的在浏览器上播放</description>

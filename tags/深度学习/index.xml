@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>深度学习 on xhikun</title>
+    <link>https://blog.wjxuikun.eu.org/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/</link>
+    <description>Recent content in 深度学习 on xhikun</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Tue, 30 Jun 2020 16:22:11 +0800</lastBuildDate><atom:link href="https://blog.wjxuikun.eu.org/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>ubuntu 18.04 mmdetection 训练mask_rcnn</title>
+      <link>https://blog.wjxuikun.eu.org/posts/ai/mmdet_mask/</link>
+      <pubDate>Tue, 30 Jun 2020 16:22:11 +0800</pubDate>
+      
+      <guid>https://blog.wjxuikun.eu.org/posts/ai/mmdet_mask/</guid>
+      <description>Git 官网 安装教程以及数据集准备，可以根据自己想要跑的网络准备。下面记录一下这次跑mask_rcnn的过程。
+数据集准备 这次在数据上面花了很多时间，一开始自己使用精灵标注助手标注，但是感觉后续处理很麻烦。后来借鉴了一下别人做数据集的方式，采用labelme进行标注，再通过mask出的区域，反算出物体的位置标签。
+我在训练mask_rcnn的时候，采用的是coco数据集的格式，首先，先按照coco数据集的格式，创建文件夹。建议将data放在mmdetection。 之后，需要调用一个labelme2coco.py脚本，生成instance.json文件（coco数据集格式），另外这个脚本需要把labelme生成的json和图片放在一起，当然也可以不放在一起，可以自己根据情况修改。 # -*- coding:utf-8 -*- import argparse import json import matplotlib.pyplot as plt import skimage.io as io import cv2 from labelme import utils import numpy as np import glob import PIL.Image from shapely.geometry import Polygon class labelme2coco(object): def __init__(self, labelme_json=[], save_json_path=&amp;#39;./new.json&amp;#39;): &amp;#39;&amp;#39;&amp;#39; :param labelme_json: 所有labelme的json文件路径组成的列表 :param save_json_path: json保存位置 &amp;#39;&amp;#39;&amp;#39; self.labelme_json = labelme_json self.save_json_path = save_json_path self.images = [] self.categories = [] self.annotations = [] # self.</description>
+    </item>
+    
+  </channel>
+</rss>

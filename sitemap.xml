@@ -2,31 +2,43 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
+    <loc>https://blog.wjxuikun.eu.org/tags/docker/</loc>
+    <lastmod>2023-07-20T11:01:42+08:00</lastmod>
+  </url><url>
     <loc>https://blog.wjxuikun.eu.org/posts/</loc>
-    <lastmod>2023-06-30T16:22:11+08:00</lastmod>
+    <lastmod>2023-07-20T11:01:42+08:00</lastmod>
   </url><url>
     <loc>https://blog.wjxuikun.eu.org/tags/</loc>
-    <lastmod>2023-06-30T16:22:11+08:00</lastmod>
+    <lastmod>2023-07-20T11:01:42+08:00</lastmod>
+  </url><url>
+    <loc>https://blog.wjxuikun.eu.org/posts/docker/install_docker_gpu/</loc>
+    <lastmod>2023-07-20T11:01:42+08:00</lastmod>
   </url><url>
     <loc>https://blog.wjxuikun.eu.org/</loc>
-    <lastmod>2023-06-30T16:22:11+08:00</lastmod>
+    <lastmod>2023-07-20T11:01:42+08:00</lastmod>
   </url><url>
-    <loc>https://blog.wjxuikun.eu.org/posts/20230630-1/</loc>
-    <lastmod>2023-06-30T16:22:11+08:00</lastmod>
+    <loc>https://blog.wjxuikun.eu.org/posts/question/self-starting/</loc>
+    <lastmod>2023-07-02T15:46:50+08:00</lastmod>
   </url><url>
     <loc>https://blog.wjxuikun.eu.org/tags/%E9%97%AE%E9%A2%98%E8%AE%B0%E5%BD%95/</loc>
+    <lastmod>2023-07-02T15:46:50+08:00</lastmod>
+  </url><url>
+    <loc>https://blog.wjxuikun.eu.org/posts/question/yuan/</loc>
+    <lastmod>2023-07-01T11:35:59+08:00</lastmod>
+  </url><url>
+    <loc>https://blog.wjxuikun.eu.org/posts/question/opencv_tohtml5/</loc>
     <lastmod>2023-06-30T16:22:11+08:00</lastmod>
   </url><url>
-    <loc>https://blog.wjxuikun.eu.org/posts/20230628/</loc>
+    <loc>https://blog.wjxuikun.eu.org/tags/%E6%97%A5%E5%B8%B8/</loc>
     <lastmod>2023-06-28T17:03:21+08:00</lastmod>
   </url><url>
-    <loc>https://blog.wjxuikun.eu.org/tags/%E9%97%AE%E9%A2%98/</loc>
+    <loc>https://blog.wjxuikun.eu.org/posts/daily/first/</loc>
     <lastmod>2023-06-28T17:03:21+08:00</lastmod>
   </url><url>
-    <loc>https://blog.wjxuikun.eu.org/posts/20230718-1/</loc>
+    <loc>https://blog.wjxuikun.eu.org/posts/ai/mmdet_mask/</loc>
     <lastmod>2020-06-30T16:22:11+08:00</lastmod>
   </url><url>
-    <loc>https://blog.wjxuikun.eu.org/tags/%E6%8A%80%E6%9C%AF/</loc>
+    <loc>https://blog.wjxuikun.eu.org/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/</loc>
     <lastmod>2020-06-30T16:22:11+08:00</lastmod>
   </url><url>
     <loc>https://blog.wjxuikun.eu.org/index-about/</loc>

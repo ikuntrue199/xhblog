@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>docker on xhikun</title>
+    <link>https://blog.wjxuikun.eu.org/tags/docker/</link>
+    <description>Recent content in docker on xhikun</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Thu, 20 Jul 2023 11:01:42 +0800</lastBuildDate><atom:link href="https://blog.wjxuikun.eu.org/tags/docker/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>ubuntu安装docker,并且支持GPU</title>
+      <link>https://blog.wjxuikun.eu.org/posts/docker/install_docker_gpu/</link>
+      <pubDate>Thu, 20 Jul 2023 11:01:42 +0800</pubDate>
+      
+      <guid>https://blog.wjxuikun.eu.org/posts/docker/install_docker_gpu/</guid>
+      <description>使用官方安装脚本自动安装docker curl -fsSL https://test.docker.com -o test-docker.sh sudo sh test-docker.sh 安装完后，终端输入docker 即可验证
+安装NVIDIA Container Runtime以支持docker调用GPU 添加脚本install_docker_gpu.sh
+sudo curl -s -L https://nvidia.github.io/nvidia-container-runtime/gpgkey | \ sudo apt-key add - distribution=$(. /etc/os-release;echo $ID$VERSION_ID) sudo curl -s -L https://nvidia.github.io/nvidia-container-runtime/$distribution/nvidia-container-runtime.list | \ sudo tee /etc/apt/sources.list.d/nvidia-container-runtime.list sudo apt-get update 执行脚本
+sh install_docker_gpu.sh 安装
+apt-get install nvidia-container-runtime 验证
+docker run -it --rm --gpus all ubuntu nvidia-smi 到这里，支持调用GPU的docker就安装完成了，加入&amp;quot;&amp;ndash;gpus&amp;quot;参数，即可在docker容器内使用GPU资源</description>
+    </item>
+    
+  </channel>
+</rss>
