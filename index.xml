@@ -6,7 +6,17 @@
     <description>Recent content on xhikun</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Thu, 20 Jul 2023 11:01:42 +0800</lastBuildDate><atom:link href="https://blog.wjxuikun.eu.org/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 27 Jul 2023 15:52:01 +0800</lastBuildDate><atom:link href="https://blog.wjxuikun.eu.org/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>笔记本连接wifi，设备直连笔记本，共享手机热点</title>
+      <link>https://blog.wjxuikun.eu.org/posts/question/share_net/</link>
+      <pubDate>Thu, 27 Jul 2023 15:52:01 +0800</pubDate>
+      
+      <guid>https://blog.wjxuikun.eu.org/posts/question/share_net/</guid>
+      <description>记录一下，今天的操作，由于设备在户外，没有外网，但是需要设备需要连接外网安装依赖包，因此通过笔记本连接手机热点，将网络共享跟设备 （补充：另外，如果是服务器的话，可以直接usb连接手机和服务器，手机设置一下USB共享网络，服务器设置为DHCP,即可将网络共享给服务器）
+首先，将设备与笔记本直连，将直连的网口ip设置为设备的ip在同一个网段，且能ping通，我这里设备有两个网口， 一个默认ip为192.168.1.30，另一个为192.168.2.30，我这里连接1网口，因此ping 192.168.1.30 选择wifi,将笔记本wifi设置共享，选择设备与笔记本直连网口 确认之后，直连网口ip会改变，将直连网口ip设置为和设备同一网段 此时本地电脑能 ping 通设备ip即可，我这里为ping 192.168.1.30 重点：假设网口ip为192.168.1.45，通过ssh登录设备，在设备上添加默认网关：route add default gw 192.168.1.45 添加之后即有外网了 </description>
+    </item>
+    
     <item>
       <title>ubuntu安装docker,并且支持GPU</title>
       <link>https://blog.wjxuikun.eu.org/posts/docker/install_docker_gpu/</link>

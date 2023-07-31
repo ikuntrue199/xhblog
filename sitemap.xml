@@ -2,25 +2,28 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>https://blog.wjxuikun.eu.org/tags/docker/</loc>
-    <lastmod>2023-07-20T11:01:42+08:00</lastmod>
-  </url><url>
     <loc>https://blog.wjxuikun.eu.org/posts/</loc>
-    <lastmod>2023-07-20T11:01:42+08:00</lastmod>
+    <lastmod>2023-07-27T15:52:01+08:00</lastmod>
   </url><url>
     <loc>https://blog.wjxuikun.eu.org/tags/</loc>
+    <lastmod>2023-07-27T15:52:01+08:00</lastmod>
+  </url><url>
+    <loc>https://blog.wjxuikun.eu.org/</loc>
+    <lastmod>2023-07-27T15:52:01+08:00</lastmod>
+  </url><url>
+    <loc>https://blog.wjxuikun.eu.org/posts/question/share_net/</loc>
+    <lastmod>2023-07-27T15:52:01+08:00</lastmod>
+  </url><url>
+    <loc>https://blog.wjxuikun.eu.org/tags/%E9%97%AE%E9%A2%98%E8%AE%B0%E5%BD%95/</loc>
+    <lastmod>2023-07-27T15:52:01+08:00</lastmod>
+  </url><url>
+    <loc>https://blog.wjxuikun.eu.org/tags/docker/</loc>
     <lastmod>2023-07-20T11:01:42+08:00</lastmod>
   </url><url>
     <loc>https://blog.wjxuikun.eu.org/posts/docker/install_docker_gpu/</loc>
     <lastmod>2023-07-20T11:01:42+08:00</lastmod>
   </url><url>
-    <loc>https://blog.wjxuikun.eu.org/</loc>
-    <lastmod>2023-07-20T11:01:42+08:00</lastmod>
-  </url><url>
     <loc>https://blog.wjxuikun.eu.org/posts/question/self-starting/</loc>
-    <lastmod>2023-07-02T15:46:50+08:00</lastmod>
-  </url><url>
-    <loc>https://blog.wjxuikun.eu.org/tags/%E9%97%AE%E9%A2%98%E8%AE%B0%E5%BD%95/</loc>
     <lastmod>2023-07-02T15:46:50+08:00</lastmod>
   </url><url>
     <loc>https://blog.wjxuikun.eu.org/posts/question/yuan/</loc>

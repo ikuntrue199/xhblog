@@ -17,26 +17,26 @@
     
 
     
-    <title>问题记录</title>
+    <title>笔记本连接wifi，设备直连笔记本，共享手机热点</title>
     <meta name="description" content="只因你太美">
-    <meta name="keywords" content='blog, xhikun, hugo'>
+    <meta name="keywords" content='blog, xhikun, hugo, 问题记录'>
 
-    <meta property="og:url" content="https://blog.wjxuikun.eu.org/tags/%E9%97%AE%E9%A2%98%E8%AE%B0%E5%BD%95/">
+    <meta property="og:url" content="https://blog.wjxuikun.eu.org/posts/question/share_net/">
     <meta property="og:type" content="website">
-    <meta property="og:title" content="问题记录">
+    <meta property="og:title" content="笔记本连接wifi，设备直连笔记本，共享手机热点">
     <meta property="og:description" content="只因你太美">
     <meta property="og:image" content="https://blog.wjxuikun.eu.org/images/avatar.jpg">
     <meta property="og:image:secure_url" content="https://blog.wjxuikun.eu.org/images/avatar.jpg">
 
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="问题记录">
+    <meta name="twitter:title" content="笔记本连接wifi，设备直连笔记本，共享手机热点">
     <meta name="twitter:description" content="只因你太美">
-    <meta property="twitter:domain" content="https://blog.wjxuikun.eu.org/tags/%E9%97%AE%E9%A2%98%E8%AE%B0%E5%BD%95/">
-    <meta property="twitter:url" content="https://blog.wjxuikun.eu.org/tags/%E9%97%AE%E9%A2%98%E8%AE%B0%E5%BD%95/">
+    <meta property="twitter:domain" content="https://blog.wjxuikun.eu.org/posts/question/share_net/">
+    <meta property="twitter:url" content="https://blog.wjxuikun.eu.org/posts/question/share_net/">
     <meta name="twitter:image" content="https://blog.wjxuikun.eu.org/images/avatar.jpg">
 
     
-    <link rel="canonical" href="https://blog.wjxuikun.eu.org/tags/%E9%97%AE%E9%A2%98%E8%AE%B0%E5%BD%95/" />
+    <link rel="canonical" href="https://blog.wjxuikun.eu.org/posts/question/share_net/" />
 
     
     <link rel="stylesheet" type="text/css" href="/css/normalize.min.css" media="print">
@@ -157,50 +157,57 @@
     </nav>
 </header>
 <main id="content">
-    <div class="container list-posts">
+    <div class="post container">
+    <div class="post-header-section">
+        <h1>笔记本连接wifi，设备直连笔记本，共享手机热点</h1>
+        <small role="doc-subtitle"></small>
+        <p class="post-date">
+            July 27, 2023
+        </p>
 
-    <h1 class="list-title">问题记录</h1>
-
-    
-
-    <h2 class="posts-year">2023</h2><article class="post-title">
-    <a href="https://blog.wjxuikun.eu.org/posts/question/share_net/" class="post-link">笔记本连接wifi，设备直连笔记本，共享手机热点</a>
-    <div class="flex-break"></div>
-    <span class="post-date">July 27, 2023</span>
-</article>
-<article class="post-title">
-    <a href="https://blog.wjxuikun.eu.org/posts/question/self-starting/" class="post-link">自启动</a>
-    <div class="flex-break"></div>
-    <span class="post-date">July 2, 2023</span>
-</article>
-<article class="post-title">
-    <a href="https://blog.wjxuikun.eu.org/posts/question/yuan/" class="post-link">python、ubuntu换源</a>
-    <div class="flex-break"></div>
-    <span class="post-date">July 1, 2023</span>
-</article>
-<article class="post-title">
-    <a href="https://blog.wjxuikun.eu.org/posts/question/opencv_tohtml5/" class="post-link">利用python opencv，将处理过后的图片，保存为html5支持的mp4</a>
-    <div class="flex-break"></div>
-    <span class="post-date">June 30, 2023</span>
-</article>
-
-    
-</div>
-
-
-<div class="pagination">
-    
-
-    
-    
-    
+        <ul class="post-tags">
         
-        <a href="/tags/%E9%97%AE%E9%A2%98%E8%AE%B0%E5%BD%95/" class="active">1</a>
-    
+            <li class="post-tag"><a href="https://blog.wjxuikun.eu.org/tags/%E9%97%AE%E9%A2%98%E8%AE%B0%E5%BD%95">问题记录</a></li>
+        
+        </ul>
+    </div>
 
-    
+    <div class="post-content">
+        <p>
+            <p>记录一下，今天的操作，由于设备在户外，没有外网，但是需要设备需要连接外网安装依赖包，因此通过笔记本连接手机热点，将网络共享跟设备
+（补充：另外，如果是服务器的话，可以直接usb连接手机和服务器，手机设置一下USB共享网络，服务器设置为DHCP,即可将网络共享给服务器）</p>
+<p>首先，将设备与笔记本直连，将直连的网口ip设置为设备的ip在同一个网段，且能ping通，我这里设备有两个网口，
+一个默认ip为192.168.1.30，另一个为192.168.2.30，我这里连接1网口，因此ping 192.168.1.30
+<img src="/images/question/share_net/1.jpg" alt=""></p>
+<p>选择wifi,将笔记本wifi设置共享，选择设备与笔记本直连网口
+<img src="/images/question/share_net/2.jpg" alt=""></p>
+<p>确认之后，直连网口ip会改变，将直连网口ip设置为和设备同一网段
+<img src="/images/question/share_net/3.jpg" alt=""></p>
+<p>此时本地电脑能 ping 通设备ip即可，我这里为ping 192.168.1.30
+<img src="/images/question/share_net/4.jpg" alt=""></p>
+<p>重点：假设网口ip为192.168.1.45，通过ssh登录设备，在设备上添加默认网关：route add default gw 192.168.1.45
+<img src="/images/question/share_net/5.jpg" alt=""></p>
+<p>添加之后即有外网了
+<img src="/images/question/share_net/6.jpg" alt=""></p>
+
+        </p>
+        
+    </div>
+
+    <div class="prev-next">
+        
+    </div>
 </div>
 
+<aside class="post-toc">
+    <nav id="toc">
+        <nav id="TableOfContents"></nav>
+    </nav>
+</aside>
+
+
+
+    
 
         </main><footer class="footer">
     
