@@ -6,7 +6,25 @@
     <description>Recent content on xhikun</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Thu, 27 Jul 2023 15:52:01 +0800</lastBuildDate><atom:link href="https://blog.wjxuikun.eu.org/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Fri, 04 Aug 2023 16:58:01 +0800</lastBuildDate><atom:link href="https://blog.wjxuikun.eu.org/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>U-2-Net 进行积水区域分割</title>
+      <link>https://blog.wjxuikun.eu.org/posts/ai/u_2_net_train/</link>
+      <pubDate>Fri, 04 Aug 2023 16:58:01 +0800</pubDate>
+      
+      <guid>https://blog.wjxuikun.eu.org/posts/ai/u_2_net_train/</guid>
+      <description>项目需求，需要分割出图片中积水区域，以及简单计算其面积，本次使用U-2-Net训练，并记录结果 U-2-Net官方github上面的pytorch是0.4.0版本，自己本地是1.8.0，起初以为出问题，不过最终训练过程却出奇的顺利
+Git 官网
+数据集准备 训练代码默认使用DUTS数据集，下载后的标签如图 显著目标检测任务是将图像中的显著区域（前景）与非显著区域（背景）分割开来，结果用黑白图来表示，即前景用像素值255表示，背景用0来表示，一般的到的黑白图是1维的，所以如果要通过端到端来实现，那么模型的最后一个卷积层输出的通道数应该为1。这有点类似于语义分割的二分类任务，但是与语义分割不同的是，显著目标检测没有既定类别的分类对象，而语义分割则是有固定类别的分类任务，显著目标检测无法固定分类数，从结果图上看，显著目标检测（结果图为灰度图）更像是回归任务。
+=====
+接下来准备自己的标签，我的需求是分割出图片中有水的区域，最开始是使用所有包含积水的图片训练，但这样训练模型会将没有积水的区域也识别有积水，因此我增加了同一场景无积水的图作为负样本 修改代码 第一个错 负样本的标签即全图为背景，值都为0，因此默认的data_loader.py 会报错
+ValueError: At least one stride in the given numpy array is negative, and tensors with negative strides are not currently supported. (You can probably work around this by making a copy of your array with array.copy().) 这个错误发生在你试图将一个有负步长的NumPy数组转换为PyTorch张量时。步长是在内存中跳过的字节数，以便在所有轴都为单位时，跳转到下一个元素。
+在NumPy中，当数组是另一个被-1步长切片的数组的视图时，该数组可能有负步长。目前，PyTorch不支持负步长，因此会出现这个错误。
+要解决这个问题，你可以在将NumPy数组转换为PyTorch张量之前复制一份你的NumPy数组。当你在一个NumPy数组上调用 .copy() 方法时，它会创建一个具有正步长的新数组。
+在date_loader.py文件 ToTensorLab类中 修改即可
+第二错 File &amp;#34;/home/user/anaconda3/envs/open-mmlab/lib/python3.7/site-packages/torch/utils/data/_utils/collate.py&amp;#34;, line 55, in default_collate return torch.stack(batch, 0, out=out) RuntimeError: result type Double can&amp;#39;t be cast to the desired output type Byte 这个错误出现在 torch.</description>
+    </item>
+    
     <item>
       <title>笔记本连接wifi，设备直连笔记本，共享手机热点</title>
       <link>https://blog.wjxuikun.eu.org/posts/question/share_net/</link>
